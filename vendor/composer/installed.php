@@ -1,15 +1,33 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'v10.1.1',
-        'version' => '10.1.1.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '2162df3ae9d908620c9ccc33a8e55ca6453d1682',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'blade-ui-kit/blade-heroicons' => array(
+            'pretty_version' => '1.4.0',
+            'version' => '1.4.0.0',
+            'reference' => 'dea08e8308d9bad9ebff1bc482d5985dbaacc91b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../blade-ui-kit/blade-heroicons',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'blade-ui-kit/blade-icons' => array(
+            'pretty_version' => '1.5.1',
+            'version' => '1.5.1.0',
+            'reference' => 'b2a80ff2a26641f64bfee48ad0d2a922ce781228',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../blade-ui-kit/blade-icons',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'brick/math' => array(
             'pretty_version' => '0.11.0',
             'version' => '0.11.0.0',
@@ -355,11 +373,29 @@
                 0 => 'v10.9.0',
             ),
         ),
+        'kamona/kui-laravel-breeze' => array(
+            'pretty_version' => 'v0.4.0',
+            'version' => '0.4.0.0',
+            'reference' => 'cf80c0c8f2956565ce7cb47f741dca5a7cc47e84',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../kamona/kui-laravel-breeze',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'laravel/breeze' => array(
+            'pretty_version' => 'v1.20.2',
+            'version' => '1.20.2.0',
+            'reference' => 'b010ff3f8cd8e9ae2a2023ca323fba9987157f60',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/breeze',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'laravel/framework' => array(
             'pretty_version' => 'v10.9.0',
@@ -371,9 +407,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v10.1.1',
-            'version' => '10.1.1.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '2162df3ae9d908620c9ccc33a8e55ca6453d1682',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -466,6 +502,15 @@
             'reference' => 'ff6248ea87a9f116e78edd6002e39e5128a0d4dd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/mime-type-detection',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'livewire/livewire' => array(
+            'pretty_version' => 'v2.12.3',
+            'version' => '2.12.3.0',
+            'reference' => '019b1e69d8cd8c7e749eba7a38e4fa69ecbc8f74',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../livewire/livewire',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -724,8 +769,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
