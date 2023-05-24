@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
         $user->email = "admin@aphrodite.com.np";
         $user->email_verified_at = now();
         $user->password = Hash::make('@dmin2023');
+        $user->assignRole('admin');
         $user->save();
     }
 }
