@@ -10,10 +10,4 @@
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         {{ __("You're logged in!")  }}
     </div>
-    @role('admin')
-    Hello Admin!
-    @endrole
-    @role('csr')
-    This is only for csr
-    @endrole
 </x-app-layout>

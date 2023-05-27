@@ -4,25 +4,25 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
+class ComposerStaticInit3ecce75e04dfa746aa43b55b0f3dbdcd
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
-        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '29ffe97919493792170d47eb03a68da9' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/helpers.php',
         '3bd81c9b8fcc150b69d8b63b4d2ccf23' => __DIR__ . '/..' . '/spatie/flare-client-php/src/helpers.php',
         '35a6ad97d21e794e7e22a17d806652e4' => __DIR__ . '/..' . '/nunomaduro/termwind/src/Functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
-        '29ffe97919493792170d47eb03a68da9' => __DIR__ . '/..' . '/blade-ui-kit/blade-icons/src/helpers.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
@@ -107,6 +107,10 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
         ),
+        'O' => 
+        array (
+            'OwenVoke\\BladeFontAwesome\\' => 26,
+        ),
         'N' => 
         array (
             'NunoMaduro\\Collision\\' => 21,
@@ -119,7 +123,6 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         array (
             'Livewire\\' => 9,
             'League\\MimeTypeDetection\\' => 25,
-            'League\\Flysystem\\Local\\' => 23,
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
@@ -168,6 +171,11 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         'C' => 
         array (
             'Cron\\' => 5,
+            'Codeat3\\BladeTypicons\\' => 22,
+            'Codeat3\\BladeGrommetIcons\\' => 26,
+            'Codeat3\\BladeEosIcons\\' => 22,
+            'Codeat3\\BladeClarityIcons\\' => 26,
+            'Codeat3\\BladeAkarIcons\\' => 23,
             'Carbon\\' => 7,
         ),
         'B' => 
@@ -380,6 +388,10 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
+        'OwenVoke\\BladeFontAwesome\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/owenvoke/blade-fontawesome/src',
+        ),
         'NunoMaduro\\Collision\\' => 
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
@@ -395,10 +407,6 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
-        ),
-        'League\\Flysystem\\Local\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/flysystem-local',
         ),
         'League\\Flysystem\\' => 
         array (
@@ -512,6 +520,26 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Codeat3\\BladeTypicons\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeat3/blade-typicons/src',
+        ),
+        'Codeat3\\BladeGrommetIcons\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeat3/blade-grommet-icons/src',
+        ),
+        'Codeat3\\BladeEosIcons\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeat3/blade-eos-icons/src',
+        ),
+        'Codeat3\\BladeClarityIcons\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeat3/blade-clarity-icons/src',
+        ),
+        'Codeat3\\BladeAkarIcons\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/codeat3/blade-akar-icons/src',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
@@ -559,8 +587,10 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         'App\\Http\\Controllers\\Auth\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerifyEmailController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\OrderItemsController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderItemsController.php',
+        'App\\Http\\Controllers\\PermissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PermissionController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -573,6 +603,7 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\ProfileUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileUpdateRequest.php',
+        'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Models\\OrderItems' => __DIR__ . '/../..' . '/app/Models/OrderItems.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -695,6 +726,11 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\TranslatorImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
         'Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
+        'Codeat3\\BladeAkarIcons\\BladeAkarIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-akar-icons/src/BladeAkarIconsServiceProvider.php',
+        'Codeat3\\BladeClarityIcons\\BladeClarityIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-clarity-icons/src/BladeClarityIconsServiceProvider.php',
+        'Codeat3\\BladeEosIcons\\BladeEosIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-eos-icons/src/BladeEosIconsServiceProvider.php',
+        'Codeat3\\BladeGrommetIcons\\BladeGrommetIconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-grommet-icons/src/BladeGrommetIconsServiceProvider.php',
+        'Codeat3\\BladeTypicons\\BladeTypiconsServiceProvider' => __DIR__ . '/..' . '/codeat3/blade-typicons/src/BladeTypiconsServiceProvider.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -3138,8 +3174,8 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         'League\\Flysystem\\FilesystemWriter' => __DIR__ . '/..' . '/league/flysystem/src/FilesystemWriter.php',
         'League\\Flysystem\\InvalidStreamProvided' => __DIR__ . '/..' . '/league/flysystem/src/InvalidStreamProvided.php',
         'League\\Flysystem\\InvalidVisibilityProvided' => __DIR__ . '/..' . '/league/flysystem/src/InvalidVisibilityProvided.php',
-        'League\\Flysystem\\Local\\FallbackMimeTypeDetector' => __DIR__ . '/..' . '/league/flysystem-local/FallbackMimeTypeDetector.php',
-        'League\\Flysystem\\Local\\LocalFilesystemAdapter' => __DIR__ . '/..' . '/league/flysystem-local/LocalFilesystemAdapter.php',
+        'League\\Flysystem\\Local\\FallbackMimeTypeDetector' => __DIR__ . '/..' . '/league/flysystem/src/Local/FallbackMimeTypeDetector.php',
+        'League\\Flysystem\\Local\\LocalFilesystemAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Local/LocalFilesystemAdapter.php',
         'League\\Flysystem\\MountManager' => __DIR__ . '/..' . '/league/flysystem/src/MountManager.php',
         'League\\Flysystem\\PathNormalizer' => __DIR__ . '/..' . '/league/flysystem/src/PathNormalizer.php',
         'League\\Flysystem\\PathPrefixer' => __DIR__ . '/..' . '/league/flysystem/src/PathPrefixer.php',
@@ -3591,6 +3627,9 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
         'NunoMaduro\\Collision\\Provider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Provider.php',
         'NunoMaduro\\Collision\\SolutionsRepositories\\NullSolutionsRepository' => __DIR__ . '/..' . '/nunomaduro/collision/src/SolutionsRepositories/NullSolutionsRepository.php',
         'NunoMaduro\\Collision\\Writer' => __DIR__ . '/..' . '/nunomaduro/collision/src/Writer.php',
+        'OwenVoke\\BladeFontAwesome\\Actions\\CompileSvgsAction' => __DIR__ . '/..' . '/owenvoke/blade-fontawesome/src/Actions/CompileSvgsAction.php',
+        'OwenVoke\\BladeFontAwesome\\BladeFontAwesomeServiceProvider' => __DIR__ . '/..' . '/owenvoke/blade-fontawesome/src/BladeFontAwesomeServiceProvider.php',
+        'OwenVoke\\BladeFontAwesome\\Commands\\SyncIconsCommand' => __DIR__ . '/..' . '/owenvoke/blade-fontawesome/src/Commands/SyncIconsCommand.php',
         'PHPUnit\\Event\\Application\\Finished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Finished.php',
         'PHPUnit\\Event\\Application\\FinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/FinishedSubscriber.php',
         'PHPUnit\\Event\\Application\\Started' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Started.php',
@@ -6517,10 +6556,10 @@ class ComposerStaticInit296fd61ea242f74f8309afa76c8617c1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit296fd61ea242f74f8309afa76c8617c1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit296fd61ea242f74f8309afa76c8617c1::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit296fd61ea242f74f8309afa76c8617c1::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit296fd61ea242f74f8309afa76c8617c1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3ecce75e04dfa746aa43b55b0f3dbdcd::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3ecce75e04dfa746aa43b55b0f3dbdcd::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3ecce75e04dfa746aa43b55b0f3dbdcd::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3ecce75e04dfa746aa43b55b0f3dbdcd::$classMap;
 
         }, null, ClassLoader::class);
     }

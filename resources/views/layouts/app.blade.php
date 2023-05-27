@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,28 +22,28 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
+
+    {{-- select 2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
-<body class="font-sans antialiased">
-    <div
-        x-data="mainState"
-        :class="{ dark: isDarkMode }"
-        x-on:resize.window="handleWindowResize"
-        x-cloak
-    >
-        <div class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-eval-0 dark:text-gray-200">
+<body class="font-sans antialiased selection:bg-violet-400 selection:text-violet-800 scroller">
+    <x-flash-error />
+    <x-flash-success />
+    <div x-data="mainState" :class="{ dark: isDarkMode }" @resize.window="handleWindowResize" x-cloak>
+        <div class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-bg dark:text-gray-200">
             <!-- Sidebar -->
             <x-sidebar.sidebar />
-
             <!-- Page Wrapper -->
-            <div
-                class="flex flex-col min-h-screen"
+            <div class="flex flex-col min-h-screen"
                 :class="{
                     'lg:ml-64': isSidebarOpen,
                     'md:ml-16': !isSidebarOpen
                 }"
-                style="transition-property: margin; transition-duration: 150ms;"
-            >
+                style="transition-property: margin; transition-duration: 150ms;">
 
                 <!-- Navbar -->
                 <x-navbar />
@@ -65,4 +66,5 @@
         </div>
     </div>
 </body>
+
 </html>

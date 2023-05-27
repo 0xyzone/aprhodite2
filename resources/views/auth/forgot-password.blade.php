@@ -16,28 +16,14 @@
             <div class="grid gap-6">
                 <!-- Email Address -->
                 <div class="space-y-2">
-                    <x-form.label
-                        for="email"
-                        :value="__('Email')"
-                    />
-
-                    <x-form.input-with-icon-wrapper>
+                    <x-label for="email" :value="__('Email')" />
+                    <x-input-with-icon-wrapper>
                         <x-slot name="icon">
                             <x-heroicon-o-mail aria-hidden="true" class="w-5 h-5" />
                         </x-slot>
-
-                        <x-form.input
-                            withicon
-                            id="email"
-                            class="block w-full"
-                            type="email"
-                            name="email"
-                            :value="old('email')"
-                            required
-                            autofocus
-                            placeholder="{{ __('Email') }}"
-                        />
-                    </x-form.input-with-icon-wrapper>
+                        <x-input withicon id="email" class="block w-full" type="email" name="email"
+                            :value="old('email')" required autofocus placeholder="{{ __('Email') }}" />
+                    </x-input-with-icon-wrapper>
                 </div>
 
                 <div>

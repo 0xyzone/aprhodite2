@@ -14,16 +14,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = new User();
+        $admin = User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@vidantaca.com.np',
+            'email_verified_at' => now(),
+            'password' => Hash::make('malaiktha1290')
+        ]);
+        $admin->assignRole('admin');
 
-        $user->name = "Super Admin";
-        $user->avatar = null;
-        $user->role = 0;
-        $user->address = "Kupandole, Lalitpur, Nepal";
-        $user->email = "admin@aphrodite.com.np";
-        $user->email_verified_at = now();
-        $user->password = Hash::make('@dmin2023');
-        $user->assignRole('admin');
-        $user->save();
+        $csr = User::create([
+            'name' => 'CSR User',
+            'email' => 'csr@vidantaca.com.np',
+            'email_verified_at' => now(),
+            'password' => Hash::make('malaiktha1290')
+        ]);
+        $csr->assignRole('csr');
+
+        $rider = User::create([
+            'name' => 'Rider',
+            'email' => 'rider@vidantaca.com.np',
+            'email_verified_at' => now(),
+            'password' => Hash::make('malaiktha1290')
+        ]);
+        $rider->assignRole('rider');
     }
 }

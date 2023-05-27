@@ -1,1 +1,1 @@
-<img src="{{ asset('img/aphrodite-logo-long.png') }}" alt="logo" {{ $attributes }}>
+<img src="{{ asset('favicon.ico') }}" alt="" {{ $attributes }}>
