@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'Super Admin',
-            'email' => 'admin@vidantaca.com.np',
+            'email' => 'admin@aphrodite.com.np',
             'email_verified_at' => now(),
             'password' => Hash::make('malaiktha1290')
         ]);
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         $csr = User::create([
             'name' => 'CSR User',
-            'email' => 'csr@vidantaca.com.np',
+            'email' => 'csr@aphrodite.com.np',
             'email_verified_at' => now(),
             'password' => Hash::make('malaiktha1290')
         ]);
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
 
         $rider = User::create([
             'name' => 'Rider',
-            'email' => 'rider@vidantaca.com.np',
+            'email' => 'rider@aphrodite.com.np',
             'email_verified_at' => now(),
             'password' => Hash::make('malaiktha1290')
         ]);
