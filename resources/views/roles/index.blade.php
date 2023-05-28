@@ -12,7 +12,7 @@
 
         <div class="mb-4">
             <div class="flex justify-end">
-                <a href="{{ route('role.create') }}" class="px-4 py-2 rounded-md bg-violet-500 text-violet-100 hover:bg-violet-600 smooth">Create Role</a>
+                <a href="{{ route('role.create') }}" class="px-4 py-2 rounded-md bg-lime-500 text-lime-100 hover:bg-lime-600 smooth">Create Role</a>
             </div>
         </div>
         <div class="flex flex-col">
@@ -41,7 +41,7 @@
 
                         <tbody class="bg-white">
                             @foreach ($roles as $var)
-                                <tr class="even:bg-slate-600 odd:bg-slate-700">
+                                <tr class="table-rows">
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                         <div class="flex items-center">
                                             {{ ($loop->iteration) }}
@@ -55,10 +55,10 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 max-w-[10rem]">
-                                        <div class="text-sm leading-5 flex gap-2 flex-wrap">
+                                        <div class="text-sm leading-5 flex gap-2 overflow-x-auto scroller pb-2">
                                             @if ($var->permissions)
                                                 @foreach ($var->permissions as $perm)
-                                                <form action="{{ route('role.revoke.perm', [$var->id, $perm->id]) }}" method="post" class="flex items-center text-sm shrink-0 bg-gradient-to-tr from-violet-900 to-violet-600 rounded-lg h-auto peer-hover:bg-red-700">
+                                                <form action="{{ route('role.revoke.perm', [$var->id, $perm->id]) }}" method="post" class="pill2">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="border-r hover:bg-red-600 smooth rounded-l-lg peer">
@@ -80,7 +80,7 @@
     
                                     <td
                                         class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-500 mx-auto">
-                                        <a href="{{ route('role.edit', $role = $var->id) }}" class="text-indigo-600 hover:text-indigo-900 flex justify-center">
+                                        <a href="{{ route('role.edit', $role = $var->id) }}" class="text-lime-600 hover:text-lime-900 flex justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

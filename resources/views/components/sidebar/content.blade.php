@@ -24,11 +24,25 @@
             'users',
         )">
             <x-slot name="icon">
-                <x-heroicon-s-rectangle-group class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+                <x-heroicon-s-users class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
 
             <x-sidebar.sublink title="All" href="{{ route('users.index') }}" :active="request()->routeIs('users.index')" />
             <x-sidebar.sublink title="Create" href="{{ route('users.create') }}" :active="request()->routeIs('users.create')" />
+        </x-sidebar.dropdown>
+
+        <x-sidebar.dropdown title="Inventory" :active="Str::startsWith(
+            request()
+                ->route()
+                ->uri(),
+            'product',
+        )">
+            <x-slot name="icon">
+                <x-fas-box-open class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            </x-slot>
+
+            <x-sidebar.sublink title="All products" href="{{ route('product.index') }}" :active="request()->routeIs('product.index')" />
+            <x-sidebar.sublink title="Create product" href="{{ route('product.create') }}" :active="request()->routeIs('product.create')" />
         </x-sidebar.dropdown>
     @endrole
 

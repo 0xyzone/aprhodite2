@@ -1,12 +1,11 @@
 @if (session()->has('error'))
-    <div class="hidden lg:block absolute z-20 w-max py-2 px-4 lg:bottom-8 bottom-16 lg:right-8 bg-rose-200 text-rose-800 border border-current fadeInLeft text-xl shadow-main rounded"
-        id="error">
+    <div class="hidden lg:block fixed z-20 px-4 py-4 bottom-8 right-8 text-rose-800 bg-rose-300 shadow-lg shadow-rose-500/50 rounded-lg fadeInRight" role="alert" id="error">
         {{ session('error') }}
     </div>
+    
     <div class="flex justify-center w-full">
-        <div class="lg:hidden absolute z-20 w-max py-2 px-4 top-2 bg-rose-200 text-rose-800 border border-current fadeInTop text-xl shadow-main rounded fadeOut"
-            id="error2">
-            <p>{{ session('error') }}</p>
+        <div class="lg:hidden fixed z-20 px-4 py-4 bottom-1 text-rose-800 bg-rose-300 shadow-lg shadow-rose-500/50 rounded-lg fadeInBottom" role="alert" id="error2">
+            {{ session('error') }}
         </div>
     </div>
     <script>

@@ -37,5 +37,13 @@ class UserSeeder extends Seeder
             'password' => Hash::make('malaiktha1290')
         ]);
         $rider->assignRole('rider');
+
+        $manager = User::create([
+            'name' => 'Manager',
+            'email' => 'manager@aphrodite.com.np',
+            'email_verified_at' => now(),
+            'password' => Hash::make('malaiktha1290')
+        ]);
+        $manager->assignRole('manager');
     }
 }

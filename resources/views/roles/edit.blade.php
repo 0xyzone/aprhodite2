@@ -41,7 +41,7 @@
     <div class="mt-4 flex gap-2 flex-wrap">
         @if ($role->permissions)
             @foreach ($role->permissions as $var)
-                <form action="{{ route('role.revoke.perm', [$role->id, $var->id]) }}" method="post" class="flex items-center text-sm shrink-0 bg-gradient-to-tr from-violet-900 via-violet-800 to-violet-600 rounded-lg h-auto">
+                <form action="{{ route('role.revoke.perm', [$role->id, $var->id]) }}" method="post" class="pill2">
                 @csrf
                 @method('delete')
                 <button type="submit" class="border-r hover:bg-red-600 smooth rounded-l-lg peer">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
-<body class="font-sans antialiased selection:bg-violet-400 selection:text-violet-800 scroller">
+<body class="font-sans antialiased selection:bg-lime-400 selection:text-lime-800 scroller">
     <x-flash-error />
     <x-flash-success />
     <div x-data="mainState" :class="{ dark: isDarkMode }" @resize.window="handleWindowResize" x-cloak>

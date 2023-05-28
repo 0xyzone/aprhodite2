@@ -8,8 +8,20 @@
     background-color: transparent !important;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .scroller {
-    @apply scrollbar-thin scrollbar-thumb-violet-800 scrollbar-track-gray-800 scrollbar-thumb-rounded-md;
+    @apply scrollbar-thin scrollbar-thumb-lime-800 dark:scrollbar-track-gray-800 scrollbar-track-gray-300 scrollbar-thumb-rounded-md;
 }
 
 .smooth {
@@ -34,15 +46,15 @@
 }
 
 .select2-results__option--highlighted {
-    @apply !text-white !bg-violet-900;
+    @apply !text-white !bg-lime-900;
 }
 
 .select2-results__option--selected {
-    @apply !text-white !bg-violet-900;
+    @apply !text-white !bg-lime-900;
 }
 
 .select2-selection__choice {
-    @apply !bg-violet-500;
+    @apply !bg-lime-500;
 }
 
 .select2-selection__choice__remove {
@@ -52,3 +64,103 @@
 .select2-container--default.select2-container--focus .select2-selection--multiple {
     border: 1px solid #aaa !important;
 }
+
+.table-rows {
+    @apply dark:even:bg-slate-600 dark:odd:bg-slate-700 even:bg-slate-100;
+}
+
+.pill {
+    @apply flex items-center text-sm shrink-0 bg-gradient-to-tr from-lime-900 to-lime-600 rounded-lg h-auto peer-hover:bg-red-700 px-4 py-2 text-white;
+}
+
+.pill2 {
+    @apply flex items-center text-sm shrink-0 bg-gradient-to-tr from-lime-900 to-lime-600 rounded-lg h-auto peer-hover:bg-red-700 text-white;
+}
+
+/* ----
+    Animations
+  ---- */
+
+  .fadeInRight {
+    animation: fadeInRight 1s;
+  }
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .fadeInLeft {
+    animation: fadeInLeft 1s;
+  }
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .fadeInTop {
+    animation: fadeInTop 1s;
+  }
+
+  @keyframes fadeInTop {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fadeInBottom {
+    animation: fadeInBottom 1s;
+  }
+  @keyframes fadeInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+    -webkit-animation: fadeIn 0.5s ease-in-out;
+}
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .fadeOut {
+    animation: fadeOut 1s 3s ease-in-out;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+/* ----
+    Animations - end
+  ---- */

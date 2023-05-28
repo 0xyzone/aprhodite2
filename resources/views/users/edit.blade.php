@@ -52,7 +52,7 @@
     <div class="mt-4 flex gap-2 flex-wrap">
         @if ($user->roles)
             @foreach ($user->roles as $var)
-                <form action="{{ route('users.revoke.role', [$user->id, $var->id]) }}" method="post" class="flex items-center text-sm shrink-0 bg-gradient-to-tr from-violet-900 via-violet-800 to-violet-600 rounded-lg h-auto">
+                <form action="{{ route('users.revoke.role', [$user->id, $var->id]) }}" method="post" class="pill2">
                 @csrf
                 @method('delete')
                 
@@ -60,7 +60,17 @@
                         <x-heroicon-o-x-mark class="w-8 h-8 p-1"/>
                     </button>
                 
-                <div class="@if (auth()->user()->id == $user->id && $var->name == 'admin') peer-hover:bg-gray-600 @else peer-hover:bg-red-700 @endif pr-4 pl-2 smooth rounded-r-lg h-full flex items-center" title="Revoke permission">
+                    @if (auth()->user()->id == $user->id && $var->name == 'admin')
+                        @php 
+                            $peer = "peer-hover:bg-gray-600";
+                        @endphp
+                    @else
+                        @php
+                            $peer = "peer-hover:bg-red-700";
+                        @endphp
+                    @endif
+                
+                <div class="{{ $peer }} pr-4 pl-2 smooth rounded-r-lg h-full flex items-center" title="Revoke permission">
                     <span class="">{{ $var->name }}</span>
                 </div>
                 </form>

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder
 {
@@ -13,8 +14,17 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'csr']);
-        Role::create(['name' => 'rider']);
+        $admin = Role::create(['name' => 'admin']);
+        $csr = Role::create(['name' => 'csr']);
+        $rider = Role::create(['name' => 'rider']);
+        $manager = Role::create(['name' => 'manager']);
+
+        $admin->givePermissionTo(Permission::all());
+
+        $csr->givePermissionTo(['view inventory', 'create order','edit order','view order','update order', 'view lead', 'update lead', 'view delivery', 'update delivery']);
+
+        $rider->givePermissionTo(['create delivery', 'edit delivery', 'update delivery', 'view delivery']);
+
+        $manager->givePermissionTo(['create user', 'edit user', 'update user', 'view user', 'create role', 'edit role', 'update role', 'delete role', 'view role', 'create permission', 'edit permission', 'update permission', 'view permission', 'create inventory', 'edit inventory', 'update inventory', 'delete inventory', 'view inventory', 'view lead', 'update lead', 'view delivery']);
     }
 }
