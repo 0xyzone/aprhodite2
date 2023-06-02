@@ -94,6 +94,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-6">
+                    {{ $permissions->links() }}
+                </div>
             </div>
         </div>
     </div>

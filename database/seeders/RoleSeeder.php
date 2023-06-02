@@ -25,6 +25,6 @@ class RoleSeeder extends Seeder
 
         $rider->givePermissionTo(['create delivery', 'edit delivery', 'update delivery', 'view delivery']);
 
-        $manager->givePermissionTo(['create user', 'edit user', 'update user', 'view user', 'create role', 'edit role', 'update role', 'delete role', 'view role', 'create permission', 'edit permission', 'update permission', 'view permission', 'create inventory', 'edit inventory', 'update inventory', 'delete inventory', 'view inventory', 'view lead', 'update lead', 'view delivery']);
+        $manager->givePermissionTo(['create user', 'edit user', 'update user', 'view user', 'create inventory', 'edit inventory', 'update inventory', 'delete inventory', 'view inventory', 'view lead', 'update lead', 'view delivery']);
     }
 }

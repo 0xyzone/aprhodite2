@@ -5,18 +5,25 @@
             <x-icons.dashboard class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
         </x-slot>
     </x-sidebar.link>
-    @role('admin')
+
+    @can ('view role') 
         <x-sidebar.link title="Roles" href="{{ route('role.index') }}" :isActive="request()->routeIs(['role.index', 'role.create', 'role.show', 'role.edit'])">
             <x-slot name="icon">
                 <x-eos-role-binding class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
         </x-sidebar.link>
+    @endcan
+
+    @can ('view permission') 
         <x-sidebar.link title="Permissions" href="{{ route('permission.index') }}" :isActive="request()->routeIs(['permission.index', 'permission.create', 'permission.show', 'permission.edit'])">
             <x-slot name="icon">
                 <x-fas-user-shield class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
         </x-sidebar.link>
+    @endcan
 
+    
+    @can ('view user') 
         <x-sidebar.dropdown title="Users" :active="Str::startsWith(
             request()
                 ->route()
@@ -26,11 +33,15 @@
             <x-slot name="icon">
                 <x-heroicon-s-users class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
-
+    
             <x-sidebar.sublink title="All" href="{{ route('users.index') }}" :active="request()->routeIs('users.index')" />
-            <x-sidebar.sublink title="Create" href="{{ route('users.create') }}" :active="request()->routeIs('users.create')" />
+            @can ('create users') 
+                <x-sidebar.sublink title="Create" href="{{ route('users.create') }}" :active="request()->routeIs('users.create')" />
+            @endcan
         </x-sidebar.dropdown>
+    @endcan
 
+    @can ('view inventory') 
         <x-sidebar.dropdown title="Inventory" :active="Str::startsWith(
             request()
                 ->route()
@@ -40,11 +51,31 @@
             <x-slot name="icon">
                 <x-fas-box-open class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
-
+    
             <x-sidebar.sublink title="All products" href="{{ route('product.index') }}" :active="request()->routeIs('product.index')" />
-            <x-sidebar.sublink title="Create product" href="{{ route('product.create') }}" :active="request()->routeIs('product.create')" />
+            @can ('create inventory') 
+                <x-sidebar.sublink title="Create product" href="{{ route('product.create') }}" :active="request()->routeIs('product.create')" />
+            @endcan
         </x-sidebar.dropdown>
-    @endrole
+    @endcan
+
+    @can ('view order') 
+        <x-sidebar.dropdown title="Orders" :active="Str::startsWith(
+            request()
+                ->route()
+                ->uri(),
+            'orders',
+        )">
+            <x-slot name="icon">
+                <x-fas-box-open class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            </x-slot>
+    
+            <x-sidebar.sublink title="All orders" href="{{ route('orders.index') }}" :active="request()->routeIs('orders.index')" />
+            @can ('create inventory') 
+                <x-sidebar.sublink title="Create order" href="{{ route('orders.create') }}" :active="request()->routeIs('orders.create')" />
+            @endcan
+        </x-sidebar.dropdown>
+    @endcan
 
     {{-- <div x-transition x-show="isSidebarOpen || isSidebarHovered" class="text-sm text-gray-500">Additional Links</div> --}}
 

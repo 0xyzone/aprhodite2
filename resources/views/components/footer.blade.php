@@ -5,7 +5,7 @@
             <x-heroicon-s-heart class="w-6 h-6 text-red-500" />
         </span>
         <span>by</span>
-        <a href="https://facebook.com/aphrodite.nepal" target="_blank" class="text-lime-600 hover:underline">
+        <a href="https://facebook.com/aphrodite.nepal" target="_blank" class="text-lime-500 hover:underline">
             Aphrodite Business Pvt. Ltd.
         </a>
         <span>&copy; 2022 - {{ date('Y') }}</span>

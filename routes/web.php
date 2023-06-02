@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,8 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('/profile', ProfileController::class);
 
     // Inventory Routes
-    Route::resource('/product', ProductController::class)->middleware('role:admin|csr|rider');
+    Route::resource('/product', ProductController::class)->middleware('permission:view inventory');
     Route::delete('/product/{product}/removeImage', [ProductController::class, 'destroyImage'])->name('product.destroyImage');
+
+    // Order related Routes
+    Route::resource('/orders', OrderController::class)->middleware('permission:view order');
 })->middleware(['auth', 'verified']);
 
 // Route::get('/buttons/icon', function () {

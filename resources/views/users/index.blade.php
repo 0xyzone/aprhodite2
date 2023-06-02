@@ -68,8 +68,7 @@
                                         <div class="text-sm leading-5 flex gap-2 flex-wrap">
                                             @if ($var->roles)
                                                 @foreach ($var->roles as $role)
-                                                    <div class="pill"
-                                                        title="Revoke permission">
+                                                    <div class="pill" title="Revoke permission">
                                                         <span class="">{{ $role->name }}</span>
                                                     </div>
                                                 @endforeach
