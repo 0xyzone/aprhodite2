@@ -14,7 +14,7 @@
             @can ('create inventory') 
                 <div class="flex justify-end">
                     <a href="{{ route('product.create') }}"
-                        class="px-4 py-2 rounded-md bg-lime-600 text-lime-100 hover:bg-lime-700 smooth">Create
+                        class="primary-btn">Create
                         Product</a>
                 </div>
             @endcan

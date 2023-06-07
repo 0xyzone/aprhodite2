@@ -13,7 +13,7 @@
         <div class="mb-4">
             <div class="flex justify-end">
                 <a href="{{ route('users.create') }}"
-                    class="px-4 py-2 rounded-md bg-lime-500 text-lime-100 hover:bg-lime-600 smooth">Create User</a>
+                    class="primary-btn">Create User</a>
             </div>
         </div>
         <div class="flex flex-col">

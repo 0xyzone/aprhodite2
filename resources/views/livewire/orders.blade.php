@@ -12,7 +12,7 @@
     <div class="mb-4">
         <div class="flex justify-end">
             <button wire:click="createOrder"
-                class="px-4 py-2 rounded-md bg-lime-600 text-lime-100 hover:bg-lime-700 smooth">Create
+                class="primary-btn">Create
                 order</button>
         </div>
     </div>

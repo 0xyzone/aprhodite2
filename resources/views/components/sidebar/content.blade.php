@@ -35,7 +35,7 @@
             </x-slot>
     
             <x-sidebar.sublink title="All" href="{{ route('users.index') }}" :active="request()->routeIs('users.index')" />
-            @can ('create users') 
+            @can ('create user') 
                 <x-sidebar.sublink title="Create" href="{{ route('users.create') }}" :active="request()->routeIs('users.create')" />
             @endcan
         </x-sidebar.dropdown>
@@ -73,6 +73,24 @@
             <x-sidebar.sublink title="All orders" href="{{ route('orders.index') }}" :active="request()->routeIs('orders.index')" />
             @can ('create inventory') 
                 <x-sidebar.sublink title="Create order" href="{{ route('orders.create') }}" :active="request()->routeIs('orders.create')" />
+            @endcan
+        </x-sidebar.dropdown>
+    @endcan
+
+    @can ('view customer') 
+        <x-sidebar.dropdown title="Customers" :active="Str::startsWith(
+            request()
+                ->route()
+                ->uri(),
+            'customer',
+        )">
+            <x-slot name="icon">
+                <x-fas-box-open class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+            </x-slot>
+    
+            <x-sidebar.sublink title="All customers" href="{{ route('customer.index') }}" :active="request()->routeIs('customer.index')" />
+            @can ('create inventory') 
+                <x-sidebar.sublink title="Create customer" href="{{ route('customer.create') }}" :active="request()->routeIs('customer.create')" />
             @endcan
         </x-sidebar.dropdown>
     @endcan

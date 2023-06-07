@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Requests\NewOrderRequest;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
@@ -21,15 +23,22 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $endpoint = 'https://portal.nepalcanmove.com/api/v1/branches';
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', $endpoint);
+        $content = json_decode($response->getBody(), true);
+        $branches = $content;
+        
+        return view('orders.create', compact('branches'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NewOrderRequest $request)
     {
-        //
+        $formFields = $request->validated();
+        dd($formFields);
     }
 
     /**

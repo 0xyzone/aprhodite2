@@ -20,6 +20,10 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.primary-btn {
+  @apply px-4 py-2 rounded-md bg-lime-700 text-lime-100 hover:bg-lime-800 smooth;
+}
+
 .scroller {
     @apply scrollbar-thin scrollbar-thumb-lime-800 dark:scrollbar-track-gray-800 scrollbar-track-gray-300 scrollbar-thumb-rounded-md;
 }
@@ -52,23 +56,23 @@ input[type=number] {
 }
 
 .select2-results { 
-    @apply dark:text-white dark:bg-gray-900;
+    @apply dark:!text-white dark:!bg-gray-900;
 }
 
 .select2-results__option--highlighted {
-    @apply !text-white !bg-lime-900;
+    @apply !text-white !bg-lime-700;
 }
 
 .select2-results__option--selected {
-    @apply !text-white !bg-lime-600;
+    @apply !text-white !bg-lime-600 hover:!bg-lime-700;
 }
 
 .select2-selection__choice {
-    @apply !bg-lime-500;
+    @apply !bg-lime-700 !text-white !border-none;
 }
 
 .select2-selection__choice__remove {
-    @apply !text-white;
+    @apply !text-white hover:!bg-red-500 smooth;
 }
 
 .select2-container--default .select2-selection--single {

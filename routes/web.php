@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -56,6 +57,10 @@ Route::middleware('auth')->group(function () {
 
     // Order related Routes
     Route::resource('/orders', OrderController::class)->middleware('permission:view order');
+
+    // Customer Routes
+    Route::resource('/customer', CustomerController::class)->middleware('permission:view customer');
+
 })->middleware(['auth', 'verified']);
 
 // Route::get('/buttons/icon', function () {

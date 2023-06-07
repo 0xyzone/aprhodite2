@@ -12,7 +12,7 @@
 
         <div class="mb-4">
             <div class="flex justify-end">
-                <a href="{{ route('permission.create') }}" class="px-4 py-2 rounded-md bg-lime-500 text-lime-100 hover:bg-lime-600 smooth">Create Permission</a>
+                <a href="{{ route('permission.create') }}" class="primary-btn">Create Permission</a>
             </div>
         </div>
         <div class="flex flex-col">
