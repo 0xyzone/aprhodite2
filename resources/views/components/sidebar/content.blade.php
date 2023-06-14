@@ -67,7 +67,7 @@
             'orders',
         )">
             <x-slot name="icon">
-                <x-fas-box-open class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+                <x-fas-basket-shopping class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
     
             <x-sidebar.sublink title="All orders" href="{{ route('orders.index') }}" :active="request()->routeIs('orders.index')" />
@@ -85,7 +85,7 @@
             'customer',
         )">
             <x-slot name="icon">
-                <x-fas-box-open class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+                <x-fluentui-people-audience-20 class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
     
             <x-sidebar.sublink title="All customers" href="{{ route('customer.index') }}" :active="request()->routeIs('customer.index')" />
@@ -96,13 +96,4 @@
     @endcan
 
     {{-- <div x-transition x-show="isSidebarOpen || isSidebarHovered" class="text-sm text-gray-500">Additional Links</div> --}}
-
-    @php
-        $links = array_fill(0, 20, '');
-    @endphp
-
-    {{-- @foreach ($links as $index => $link)
-        <x-sidebar.link title="Dummy link {{ $index + 1 }}" href="#" />
-    @endforeach --}}
-
 </x-perfect-scrollbar>

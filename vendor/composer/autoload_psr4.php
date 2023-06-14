@@ -89,6 +89,7 @@ return array(
     'Cron\\' => array($vendorDir . '/dragonmantank/cron-expression/src/Cron'),
     'Codeat3\\BladeTypicons\\' => array($vendorDir . '/codeat3/blade-typicons/src'),
     'Codeat3\\BladeGrommetIcons\\' => array($vendorDir . '/codeat3/blade-grommet-icons/src'),
+    'Codeat3\\BladeFluentUiSystemIcons\\' => array($vendorDir . '/codeat3/blade-fluentui-system-icons/src'),
     'Codeat3\\BladeEosIcons\\' => array($vendorDir . '/codeat3/blade-eos-icons/src'),
     'Codeat3\\BladeClarityIcons\\' => array($vendorDir . '/codeat3/blade-clarity-icons/src'),
     'Codeat3\\BladeAkarIcons\\' => array($vendorDir . '/codeat3/blade-akar-icons/src'),

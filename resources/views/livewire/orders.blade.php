@@ -31,13 +31,13 @@
                                 Placed by</th>
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200">
-                                Placed at</th>
-                            <th
-                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200">
                                 Customer Name</th>
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200">
                                 Customer Address</th>
+                            <th
+                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200">
+                                Placed at</th>
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200">
                                 Created_At</th>
@@ -73,12 +73,12 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                    <div class="text-sm leading-5">{{ $var->name }}
+                                    <div class="text-sm leading-5">{{ $var->fullName }}
                                     </div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                    <div class="text-sm leading-5">{{ $var->price }}
+                                    <div class="text-sm leading-5">{{ $var->address }}
                                     </div>
                                 </td>
 

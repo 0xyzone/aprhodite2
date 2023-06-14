@@ -32,6 +32,18 @@ input[type=number] {
     @apply transform duration-150;
 }
 
+.select2-selection__clear{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  @apply right-0;
+}
+
+.select2-selection__arrow{
+  display: none;
+}
 
 .selection {
   @apply !h-full !block;
@@ -57,6 +69,13 @@ input[type=number] {
 
 .select2-results { 
     @apply dark:!text-white dark:!bg-gray-900;
+}
+.select2-results__option--selectable{
+  @apply capitalize;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  @apply capitalize;
 }
 
 .select2-results__option--highlighted {

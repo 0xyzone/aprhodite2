@@ -8,11 +8,9 @@ class Select2Dropdown extends Component
 {
     public $ottPlatform = '';
  
-    public $webseries = [
-        'Wanda Vision',
-        'Money Heist',
-        'Lucifer',
-        'Stranger Things'
+    public $values = [
+        'inside',
+        'outside'
     ];     
     public function render()
     {

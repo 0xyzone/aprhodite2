@@ -1153,6 +1153,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
         return $this->normalizeCachePath('APP_EVENTS_CACHE', 'cache/events.php');
     }
 
+
     /**
      * Normalize a relative or absolute path to a cache file.
      *
@@ -1233,7 +1234,6 @@ class Application extends Container implements ApplicationContract, CachesConfig
     public function terminating($callback)
     {
         $this->terminatingCallbacks[] = $callback;
-
         return $this;
     }
 
