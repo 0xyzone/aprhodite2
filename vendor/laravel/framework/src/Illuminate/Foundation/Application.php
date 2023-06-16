@@ -38,7 +38,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
      *
      * @var string
      */
-    const VERSION = '10.9.0';
+    const VERSION = '10.13.5';
 
     /**
      * The base path for the Laravel installation.
@@ -1153,7 +1153,6 @@ class Application extends Container implements ApplicationContract, CachesConfig
         return $this->normalizeCachePath('APP_EVENTS_CACHE', 'cache/events.php');
     }
 
-
     /**
      * Normalize a relative or absolute path to a cache file.
      *
@@ -1234,6 +1233,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
     public function terminating($callback)
     {
         $this->terminatingCallbacks[] = $callback;
+
         return $this;
     }
 
