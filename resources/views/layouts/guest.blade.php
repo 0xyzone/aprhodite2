@@ -45,6 +45,7 @@
             </x-button>
         </div>
     </div>
+    @stack('scripts')
 </body>
 
 </html>

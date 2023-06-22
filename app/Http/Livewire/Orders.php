@@ -8,11 +8,12 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 
 class Orders extends Component
 {
+    public $search = '';
 
     public function render()
     {
         return view('livewire.orders', [
-            'orders' => Order::paginate(10),
+            'orders' => Order::where('phone', 'like', '%'.$this->search.'%')->orderBy('id', 'desc')->paginate(5),
         ]);
     }
 

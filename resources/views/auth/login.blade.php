@@ -54,19 +54,7 @@
                     <input id="togglePassword" type="checkbox"
                         class="text-lime-600 border-gray-300 rounded focus:border-lime-300 focus:ring focus:ring-lime-600 dark:border-gray-600 dark:bg-dark-eval-1 dark:focus:ring-offset-dark-eval-1">
                     <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Show password') }}</span>
-                    <script>
-                        $(document).ready(function() {
-                            $("#togglePassword").change(function() {
-                                if ($("#togglePassword").prop('checked') == true) {
-                                    console.log('Show Password');
-                                    $("#password").attr('type', 'text');
-                                } else {
-                                    console.log('Hide Password');
-                                    $("#password").attr('type', 'password');
-                                };
-                            });
-                        })
-                    </script>
+
                 </label>
 
                 <div>
@@ -92,4 +80,19 @@
             });
         </script>
     </x-auth-card>
+@push ('scripts') 
+    <script>
+        $(document).ready(function() {
+            $("#togglePassword").change(function() {
+                if ($("#togglePassword").prop('checked') == true) {
+                    console.log('Show Password');
+                    $("#password").attr('type', 'text');
+                } else {
+                    console.log('Hide Password');
+                    $("#password").attr('type', 'password');
+                };
+            });
+        })
+    </script>
+@endpush
 </x-guest-layout>

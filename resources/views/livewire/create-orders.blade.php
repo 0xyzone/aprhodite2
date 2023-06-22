@@ -13,9 +13,9 @@
             <form action="{{ route('orders.store') }}" method="post" class="grid grid-cols-1 lg:grid-cols-3 gap-4"
                 wire:submit.prevent="submit">
                 @csrf
-                <input type="hidden" name="user_id" :value="{{ $userId }}" wire:model="form.user_id">
-                <input type="hidden" name="delivery_status" value="pending" wire:model="form.delivery_status">
-                <input type="hidden" name="order_status" value="created" wire:model="form.order_status">
+                <input type="hidden" name="user_id" wire:model="form.user_id">
+                <input type="hidden" name="delivery_status" wire:model="form.delivery_status" class="text-black">
+                <input type="hidden" name="order_status" wire:model="form.order_status">
                 <div class="space-y-2">
                     <x-input-with-icon-wrapper>
                         <x-slot name="icon">
@@ -43,7 +43,7 @@
                 <div class="space-y-2">
                     <x-input-with-icon-wrapper>
                         <x-slot name="icon">
-                            <x-eos-email aria-hidden="true" class="w-5 h-5" />
+                            <x-fas-envelope aria-hidden="true" class="w-5 h-5" />
                         </x-slot>
                         <x-input withicon id="email" class="block w-full" type="email" name="email"
                             :value="old('email')" placeholder="{{ __('Type customer email here...') }}" autofocus="true"
@@ -82,6 +82,19 @@
                     <x-input-error class="mt-2" :messages="$errors->get('form.location')" />
                 </div>
 
+                {{-- <div>
+                    <livewire:product-dropdown />
+                    <x-input-error class="mt-2" :messages="$errors->get('form.location')" />
+                </div> --}}
+
+                {{-- <div>
+                    <select name="products[]" id="products" class="w-full">
+                        @foreach ($products as $var)
+                            <option value="{{ $var->name }}">{{ $var->name }}</option>
+                        @endforeach
+                    </select>
+                </div> --}}
+
 
                 <div class="">
                     <x-button class="justify-center gap-2 w-max" type="submit">
@@ -91,6 +104,9 @@
                 </div>
 
             </form>
+            <div class="mt-2">
+                {{ $orderCreated }}
+            </div>
         </div>
     @endif
 </div>

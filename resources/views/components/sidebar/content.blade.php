@@ -9,7 +9,7 @@
     @can ('view role') 
         <x-sidebar.link title="Roles" href="{{ route('role.index') }}" :isActive="request()->routeIs(['role.index', 'role.create', 'role.show', 'role.edit'])">
             <x-slot name="icon">
-                <x-eos-role-binding class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+                <x-fas-id-badge class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
         </x-sidebar.link>
     @endcan
@@ -85,7 +85,8 @@
             'customer',
         )">
             <x-slot name="icon">
-                <x-fluentui-people-audience-20 class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+                {{-- <x-fluentui-people-audience-20 class="flex-shrink-0 w-6 h-6" aria-hidden="true" /> --}}
+                <x-fas-user-tag class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
             </x-slot>
     
             <x-sidebar.sublink title="All customers" href="{{ route('customer.index') }}" :active="request()->routeIs('customer.index')" />

@@ -1,6 +1,6 @@
 <div class="w-full">
     <div wire:ignore class="w-full">
-        <select class="form-control w-full" id="select2-dropdown" name="location" wire:model="form.location" wire:change="$emit('selected_select2_item',$event.target.value)">
+        <select class="w-full" id="select2-dropdown" name="location" wire:model="form.location" wire:change="$emit('selected_select2_item',$event.target.value)">
             <option value=""></option>
             @foreach ($values as $item)
                 <option value="{{ $item }}" @if (old('location') == $item) selected @endif>
@@ -34,7 +34,7 @@
                 livewire.emit('selected_select2_item', e.target.value);
                 // var data = $('#select2-dropdown').select2("val");
                 // console.log(data);
-                // @this.set('ottPlatform', data);
+                @this.set('ottPlatform', data);
             });
 
             window.livewire.on('select2',()=>{
