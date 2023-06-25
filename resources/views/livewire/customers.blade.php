@@ -27,9 +27,7 @@
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-center text-gray-200 uppercase border-b border-gray-200 w-1/12">
                                 Order ID</th>
-                            <th
-                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 hidden lg:table-cell">
-                                Placed by</th>
+
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 hidden lg:table-cell">
                                 Customer Name</th>
@@ -38,23 +36,24 @@
                                 Customer Address</th>
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 hidden lg:table-cell">
-                                Placed at</th>
+                                Phone</th>
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200">
-                                Order Status</th>
+                                Alt. Phone</th>
                             <th class="py-3 text-sm font-bold text-gray-200 border-b border-gray-200 text-center">
                                 Action</th>
                         </tr>
                     </thead>
 
                     <tbody x-data="{ order: false }">
-                        @if ($orders->count() == 0)
+                        @if ($customers->count() == 0)
                             <tr>
-                                <td colspan="100%" class="!text-black dark:!text-white text-center py-4 w-full"><span>No items
+                                <td colspan="100%" class="!text-black dark:!text-white text-center py-4 w-full"><span>No
+                                        items
                                         found!</span></td>
                             </tr>
                         @endif
-                        @foreach ($orders as $var)
+                        @foreach ($customers as $var)
                             <tr class="table-rows"">
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                     <div class="text-right">
@@ -62,15 +61,8 @@
                                     </div>
                                 </td>
 
-                                <td
-                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 w-44 hidden lg:table-cell">
-                                    <div class="text-sm leading-5">
-                                        {{ $var->getUser->name }}
-                                    </div>
-                                </td>
-
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 hidden lg:table-cell">
-                                    <div class="text-sm leading-5">{{ $var->fullName }}
+                                    <div class="text-sm leading-5">{{ $var->name }}
                                     </div>
                                 </td>
 
@@ -80,35 +72,26 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 hidden lg:table-cell">
-                                    <p class="text-sm leading-5 max-w-xs line-clamp-[3]"
-                                        title="{{ $var->created_at->format('jS M, Y | H:i A') }}">
-                                        {{ $var->created_at->diffForHumans() }}
-                                    </p>
+                                    <div class="text-sm leading-5">{{ $var->phone }}
+                                    </div>
                                 </td>
 
                                 <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap border-b border-gray-500">
-                                    @can ('update order') 
-                                        <form action="" method="post">
-                                            @csrf
-                                            <select name="status" id="status"
-                                                class="bg-gray-300 dark:bg-gray-800 rounded-lg border-0 outline-none focus:ring-0">
-                                                <option value="">Null</option>
-                                                <option value="pending" @if ($var->order_status == 'pending') selected @endif>
-                                                    Pending</option>
-                                            </select>
-                                        </form>
-                                    @else 
-                                    <div class="text-sm leading-5 capitalize">{{ $var->order_status }}
+                                    <div class="text-sm leading-5">
+                                        @if ($var['alt-phone'])
+                                            {{ $var['alt-phone'] }}
+                                        @else
+                                            -
+                                        @endif
                                     </div>
-                                    @endcan
                                 </td>
 
                                 <td
                                     class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-500 mx-auto">
                                     <div class="flex gap-2 justify-center">
 
-                                        @can ('edit order') 
-                                            <a href="{{ route('orders.edit', $product = $var->id) }}"
+                                        @can ('edit customer') 
+                                            <a href="{{ route('customer.edit', $product = $var->id) }}"
                                                 class="text-lime-500 hover:text-lime-700 flex justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
                                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -128,8 +111,8 @@
                                                         d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                 </svg>
                                             </a> --}}
-                                        @can ('delete order') 
-                                            <form action="{{ route('orders.destroy', $var->id) }}" method="post">
+                                        @can ('delete customer') 
+                                            <form action="{{ route('customer.destroy', $var->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
@@ -144,26 +127,7 @@
                                                 </button>
                                             </form>
                                         @endcan
-                                        <x-fas-eye class="w-5 text-cyan-500 hover:text-cyan-700"
-                                            @click="order = {{ $var->id }}"
-                                            x-show="order != {{ $var->id }}">View</x-fas-eye>
-                                        <x-fas-eye-slash class="w-5" @click="order = false"
-                                            x-show="order == {{ $var->id }}">x</x-fas-eye-slash>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="100%">
-                                    <div class="relative overflow-hidden transition-all max-h-0 duration-700 flex justify-between w-full px-16"
-                                        style="" x-ref="container{{ $var->id }}"
-                                        x-bind:style="order == {{ $var->id }} ? 'max-height: ' + $refs
-                                            .container{{ $var->id }}.scrollHeight +
-                                            'px; display: flex; margin-bottom: 1rem; margin-top: 1rem;' : ''">
-                                        <div class="grid grid-cols-1 lg:grid-cols-4 space-x-2 w-full">
-                                            <div class="w-full flex items-center gap-2">
-                                                <x-fas-user class="w-4" /><span>{{ $var->fullName }}</span>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </td>
                             </tr>
@@ -172,7 +136,7 @@
                 </table>
             </div>
             <div class="mt-2">
-                {{ $orders->links() }}
+                {{ $customers->links() }}
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->bigInteger('phone')->unique();
-            $table->bigInteger('alt-phone');
+            $table->bigInteger('alt-phone')->nullable();
             $table->longText('address');
             $table->timestamps();
         });

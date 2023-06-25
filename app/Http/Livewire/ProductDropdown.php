@@ -17,6 +17,6 @@ class ProductDropdown extends Component
 
     public function render()
     {
-        return view('livewire.product-dropdown')->layout('layouts.app');
+        return view('livewire.product-dropdown')->extends('layouts.app');
     }
 }

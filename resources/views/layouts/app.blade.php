@@ -70,6 +70,20 @@
     </div>
     @livewireScripts()
     @stack('scripts')
+    <script>
+        $('input[type=number]').on('wheel', function(e) {
+            e.target.blur();
+        });
+        $(document).ready(function() {
+            $("input[type=number]").on("focus", function() {
+                $(this).on("keydown", function(event) {
+                    if (event.keyCode === 38 || event.keyCode === 40) {
+                        event.preventDefault();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
