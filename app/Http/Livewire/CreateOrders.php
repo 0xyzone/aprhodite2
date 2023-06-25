@@ -32,6 +32,9 @@ class CreateOrders extends Component
     public $total;
     public $adv = 0;
     public $grandTotal;
+    public $gateway = null;
+    public $payment_status = "pending";
+    public $note = "";
 
 
     protected $listeners = [
@@ -51,7 +54,7 @@ class CreateOrders extends Component
         $this->models = Order::all();
         $this->userId = Auth::user()->id;
         $this->products = Product::search($this->search_items)->get();
-        foreach ($this->products as $product){
+        foreach ($this->products as $product) {
             $this->quantity[$product->id] = 1;
         }
     }
@@ -116,18 +119,22 @@ class CreateOrders extends Component
         $formFields['form']['fullName'] = $formFields['form']['name'];
         $existingCustomer = Customer::where('email', $formFields['form']['email'])->get();
 
-        
-        if($existingCustomer->count() < 1) {
+
+        if ($existingCustomer->count() < 1) {
             Customer::create($formFields['form']);
             Order::create($formFields['form']);
         } else {
+            $formFields['form']['discount'] = $this->discount;
+            $formFields['form']['advance'] = $this->adv;
+            $formFields['form']['total_price'] = $this->grandTotal;
             Order::create($formFields['form']);
         }
-        
+
         return redirect(route('orders.index'))->with('success', 'Order created successfully');
     }
 
-    public function addNewItem($product_id) {
+    public function addNewItem($product_id)
+    {
         $product = Product::findOrFail($product_id);
         Cart::add(
             $product->id,
@@ -137,15 +144,17 @@ class CreateOrders extends Component
         );
     }
 
-    public function increament($rowId) {
+    public function increament($rowId)
+    {
         $cart = Cart::get($rowId);
         $newQty = $cart->qty + 1;
         Cart::update($rowId, $newQty);
     }
 
-    public function decreament($rowId) {
+    public function decreament($rowId)
+    {
         $cart = Cart::get($rowId);
-        if($cart->qty != 1){
+        if ($cart->qty != 1) {
             $newQty = $cart->qty - 1;
             Cart::update($rowId, $newQty);
         } else {
@@ -156,20 +165,20 @@ class CreateOrders extends Component
     public function render()
     {
         // Cart::destroy();
-        if($this->discount == "") {
+        if ($this->discount == "") {
             $this->discount = 0;
         }
-        if($this->adv == "") {
+        if ($this->adv == "") {
             $this->adv = 0;
         }
         $this->products = Product::search($this->search_items)->get();
         $this->cart = Cart::content();
-        foreach ($this->cart as $item){
+        foreach ($this->cart as $item) {
             $this->quantity[$item->id] = $item->qty;
         }
-        if($this->form['location'] == 'inside') {
+        if ($this->form['location'] == 'inside') {
             $this->deliveryRate = 100;
-        } elseif($this->form['location'] == 'outside') {
+        } elseif ($this->form['location'] == 'outside') {
             $this->deliveryRate = 150;
         }
         $this->subtotal = Cart::subtotal();
@@ -178,5 +187,4 @@ class CreateOrders extends Component
         // dd($this->cart);
         return view('livewire.create-orders');
     }
-
 }

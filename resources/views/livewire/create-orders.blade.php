@@ -191,14 +191,11 @@
                 </table>
             </div>
 
-            <div class="mt-2 float-right">
+            <div class="mt-4 float-right flex ">
                 <x-button class="justify-center gap-2 w-max" type="submit" form="order">
                     <x-heroicon-o-plus-circle class="w-6 h-6" aria-hidden="true" />
                     <span>{{ __('Create') }}</span>
                 </x-button>
-            </div>
-            <div class="mt-2">
-                {{ $orderCreated }}
             </div>
         </div>
     @endif
