@@ -4,29 +4,28 @@
             <h2 class="text-xl font-semibold leading-tight">
                 {{ __('Orders') }}
             </h2>
-            <div>
-                <x-input-with-icon-wrapper>
-                    <x-slot name="icon">
-                        <x-fas-search aria-hidden="true" class="w-5 h-5" />
-                    </x-slot>
-                    <x-input withicon id="fullName" class="block w-full" type="number" name="search"
-                        placeholder="{{ __('Search order') }}" autofocus="true" wire:model.debounce.500ms="search" />
-                </x-input-with-icon-wrapper>
-                <x-input-error class="mt-2" :messages="$errors->get('form.name')" />
-            </div>
             <a href="{{ route('orders.create') }}" class="primary-btn">Create order</a>
         </div>
+        <div class="mt-4">
+            <x-input-with-icon-wrapper>
+                <x-slot name="icon">
+                    <x-fas-search aria-hidden="true" class="w-5 h-5" />
+                </x-slot>
+                <x-input withicon id="search" class="block w-full" type="text" name="search" :value="old('search')"
+                    placeholder="{{ __('Search items...') }}" wire:model="search" />
+
+            </x-input-with-icon-wrapper>
+        </div>
     </div>
-    <div class="flex-col mt-10">
+    <div class="flex-col mt-4">
         <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div
-                class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-500 shadow sm:rounded-lg">
+            <div class="inline-block min-w-full overflow-hidden align-middle shadow sm:rounded-t-lg">
                 <table class="min-w-full table-auto">
                     <thead>
                         <tr class="!bg-slate-600">
                             <th
-                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-center text-gray-200 uppercase border-b border-gray-200 w-1/12">
-                                Order ID</th>
+                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-center text-gray-200 uppercase border-b border-gray-200 w-10">
+                                #</th>
                             <th
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 hidden lg:table-cell">
                                 Placed by</th>
@@ -37,10 +36,10 @@
                                 class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 hidden lg:table-cell">
                                 Customer Address</th>
                             <th
-                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 hidden lg:table-cell">
+                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-center text-gray-200 uppercase border-b border-gray-200 hidden lg:table-cell">
                                 Placed at</th>
                             <th
-                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200">
+                                class="px-6 py-3 text-xs font-bold leading-4 tracking-wider text-gray-200 uppercase border-b border-gray-200 text-center">
                                 Order Status</th>
                             <th class="py-3 text-sm font-bold text-gray-200 border-b border-gray-200 text-center">
                                 Action</th>
@@ -50,64 +49,65 @@
                     <tbody x-data="{ order: false }">
                         @if ($orders->count() == 0)
                             <tr>
-                                <td colspan="100%" class="!text-black dark:!text-white text-center py-4 w-full"><span>No items
+                                <td colspan="100%" class="!text-black dark:!text-white text-center py-4 w-full"><span>No
+                                        items
                                         found!</span></td>
                             </tr>
                         @endif
                         @foreach ($orders as $var)
-                            <tr class="table-rows"">
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                            <tr class="table-rows">
+                                <td class="pl-2 py-4 whitespace-no-wrap w-10">
                                     <div class="text-right">
-                                        {{ $var->id }}
+                                        ADB#{{ $var->id }}
                                     </div>
                                 </td>
 
-                                <td
-                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 w-44 hidden lg:table-cell">
+                                <td class="px-6 py-4 whitespace-no-wrap w-44 hidden lg:table-cell">
                                     <div class="text-sm leading-5">
                                         {{ $var->getUser->name }}
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 hidden lg:table-cell">
+                                <td class="px-6 py-4 whitespace-no-wrap hidden lg:table-cell">
                                     <div class="text-sm leading-5">{{ $var->fullName }}
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 hidden lg:table-cell">
+                                <td class="px-6 py-4 whitespace-no-wrap hidden lg:table-cell">
                                     <div class="text-sm leading-5" title="{{ $var->address }}">{{ $var->address }}
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 hidden lg:table-cell">
+                                <td class="px-6 py-4 whitespace-no-wrap hidden lg:table-cell">
                                     <p class="text-sm leading-5 max-w-xs line-clamp-[3]"
                                         title="{{ $var->created_at->format('jS M, Y | H:i A') }}">
                                         {{ $var->created_at->diffForHumans() }}
                                     </p>
                                 </td>
 
-                                <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap border-b border-gray-500">
-                                    @can ('update order') 
-                                        <form action="" method="post">
-                                            @csrf
-                                            <select name="status" id="status"
-                                                class="bg-gray-300 dark:bg-gray-800 rounded-lg border-0 outline-none focus:ring-0">
-                                                <option value="">Null</option>
-                                                <option value="pending" @if ($var->order_status == 'pending') selected @endif>
-                                                    Pending</option>
-                                            </select>
-                                        </form>
-                                    @else 
-                                    <div class="text-sm leading-5 capitalize">{{ $var->order_status }}
-                                    </div>
+                                <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap text-center">
+                                    @can('update order')
+                                        <select name="status" id="status"
+                                            class="bg-gray-300 dark:bg-gray-800 rounded-lg border-0 outline-none focus:ring-0"
+                                            wire:model="order_status.{{ $var->id }}"
+                                            wire:change="changeStatus({{ $var->id }})">
+                                            <option value="pending">Pending</option>
+                                            <option value="confirmed">Confirmed</option>
+                                            <option value="ncm">NCM</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="dispatched">Dispatched</option>
+                                            <option value="canceled">Canceled</option>
+                                        </select>
+                                    @else
+                                        <div class="text-sm leading-5 capitalize">{{ $var->order_status }}
+                                        </div>
                                     @endcan
                                 </td>
 
-                                <td
-                                    class="text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-500 mx-auto">
-                                    <div class="flex gap-2 justify-center">
+                                <td class="text-sm font-medium leading-5 text-center whitespace-no-wrap mx-auto">
+                                    <div class="flex gap-2 justify-center pr-4">
 
-                                        @can ('edit order') 
+                                        @can('edit order')
                                             <a href="{{ route('orders.edit', $product = $var->id) }}"
                                                 class="text-lime-500 hover:text-lime-700 flex justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
@@ -117,18 +117,7 @@
                                                 </svg>
                                             </a>
                                         @endcan
-                                        {{-- <a href="{{ route('product.show', $var->id) }}"
-                                                class="text-cyan-500 hover:text-cyan-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                </svg>
-                                            </a> --}}
-                                        @can ('delete order') 
+                                        @can('delete order')
                                             <form action="{{ route('orders.destroy', $var->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
@@ -152,7 +141,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="table-rows">
                                 <td colspan="100%">
                                     <div class="relative overflow-hidden transition-all max-h-0 duration-700 flex justify-between w-full px-16"
                                         style="" x-ref="container{{ $var->id }}"
@@ -171,9 +160,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-2">
-                {{ $orders->links() }}
-            </div>
+            {{-- <div class="mt-2">
+        {{ $orders->links() }}
+      </div> --}}
         </div>
     </div>
 </div>

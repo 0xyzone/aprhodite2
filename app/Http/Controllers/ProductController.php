@@ -9,6 +9,9 @@ use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
+    public function __construct() {
+        $this->middleware(['permission:create inventory|edit inventory'] );
+    }
     /**
      * Display a listing of the resource.
      */

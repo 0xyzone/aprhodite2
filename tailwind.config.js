@@ -9,6 +9,10 @@ module.exports = {
         "./resources/js/**/*.js",
     ],
 
+    presets: [
+        require("./vendor/power-components/livewire-powergrid/tailwind.config.js"),
+    ],
+
     theme: {
         extend: {
             fontFamily: {

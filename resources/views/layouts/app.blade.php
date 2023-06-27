@@ -49,7 +49,7 @@
                 style="transition-property: margin; transition-duration: 150ms;">
 
                 <!-- Navbar -->
-                <x-navbar />
+                <x-navbar class="z-[99]" />
 
                 <!-- Page Heading -->
                 <header>
@@ -59,7 +59,7 @@
                 </header>
 
                 <!-- Page Content -->
-                <main class="px-4 sm:px-6 flex-1">
+                <main class="px-4 sm:px-6 flex-1 z-0">
                     {{ $slot }}
                 </main>
 
@@ -79,6 +79,7 @@
                 $(this).on("keydown", function(event) {
                     if (event.keyCode === 38 || event.keyCode === 40) {
                         event.preventDefault();
+                        event.target.blur();
                     }
                 });
             });

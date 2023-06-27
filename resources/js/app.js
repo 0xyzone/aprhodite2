@@ -4,6 +4,7 @@ import Alpine from "alpinejs";
 import collapse from "@alpinejs/collapse";
 import PerfectScrollbar from "perfect-scrollbar";
 
+
 window.PerfectScrollbar = PerfectScrollbar;
 
 document.addEventListener("alpine:init", () => {

@@ -7,6 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\NewOrderRequest;
 use App\Models\Customer;
+use App\Models\OrderItems;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -34,7 +35,7 @@ class CreateOrders extends Component
     public $grandTotal;
     public $gateway = null;
     public $payment_status = "pending";
-    public $note = "";
+    public $note;
 
 
     protected $listeners = [
@@ -122,13 +123,41 @@ class CreateOrders extends Component
 
         if ($existingCustomer->count() < 1) {
             Customer::create($formFields['form']);
+            $formFields['form']['discount'] = $this->discount;
+            $formFields['form']['advance'] = $this->adv;
+            $formFields['form']['total_price'] = $this->grandTotal;
+            $formFields['form']['gateway'] = $this->gateway;
+            $formFields['form']['payment_status'] = $this->payment_status;
+            $formFields['form']['note'] = $this->note;
             Order::create($formFields['form']);
+            $latest_order = Order::orderBy('id', 'desc')->first();
+            foreach($this->cart as $item) {
+                OrderItems::create([
+                    'order_id' => $latest_order->id,
+                    'product_id' => $item['id'],
+                    'quantity' => $item['qty'],
+                    'price' => $item['price'] * $item['qty']
+                ]);
+            }
         } else {
             $formFields['form']['discount'] = $this->discount;
             $formFields['form']['advance'] = $this->adv;
             $formFields['form']['total_price'] = $this->grandTotal;
+            $formFields['form']['gateway'] = $this->gateway;
+            $formFields['form']['payment_status'] = $this->payment_status;
+            $formFields['form']['note'] = $this->note;
             Order::create($formFields['form']);
+            $latest_order = Order::orderBy('id', 'desc')->first();
+            foreach($this->cart as $item) {
+                OrderItems::create([
+                    'order_id' => $latest_order->id,
+                    'product_id' => $item['id'],
+                    'quantity' => $item['qty'],
+                    'price' => $item['price'] * $item['qty']
+                ]);
+            }
         }
+            Cart::destroy();
 
         return redirect(route('orders.index'))->with('success', 'Order created successfully');
     }
@@ -142,6 +171,12 @@ class CreateOrders extends Component
             1,
             $product->price,
         );
+        $this->search_items = "";
+    }
+
+    public function clearCart() {
+        Cart::destroy();
+        $this->search_items = "";
     }
 
     public function increament($rowId)
@@ -184,7 +219,21 @@ class CreateOrders extends Component
         $this->subtotal = Cart::subtotal();
         $this->total = $this->subtotal - $this->discount + $this->deliveryRate;
         $this->grandTotal = $this->total - $this->adv;
+        if($this->adv != 0){
+            $diff = $this->total - $this->adv;
+            if($diff != 0){
+                $this->payment_status = "partially paid";
+            } else {
+                $this->payment_status = "paid";
+            }
+        } else {
+            $this->payment_status = "pending";
+        }
         // dd($this->cart);
         return view('livewire.create-orders');
+    }
+
+    public function removeItem($rowId) {
+        Cart::remove($rowId);
     }
 }

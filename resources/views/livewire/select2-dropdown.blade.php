@@ -1,10 +1,16 @@
 <div class="w-full">
     <div wire:ignore class="w-full">
-        <select class="w-full" id="select2-dropdown" name="location" wire:model="form.location" wire:change="$emit('selected_select2_item',$event.target.value)">
+        <select
+            class="w-full py-2 border-gray-400 rounded-md focus:border-gray-400 focus:ring
+            focus:ring-lime-600 focus:ring-offset-2 focus:ring-offset-white dark:border-gray-600 dark:bg-dark-eval-1
+            dark:text-gray-300 dark:focus:ring-offset-dark-eval-1"
+            id="select2-dropdown" name="location" wire:model="form.location"
+            wire:change="$emit('selected_select2_item',$event.target.value)">
             <option value=""></option>
             @foreach ($values as $item)
                 <option value="{{ $item }}" @if (old('location') == $item) selected @endif>
-                    <span>{{ $item }}</span></option>
+                    <span>{{ $item }}</span>
+                </option>
             @endforeach
         </select>
     </div>
@@ -37,7 +43,7 @@
                 @this.set('ottPlatform', data);
             });
 
-            window.livewire.on('select2',()=>{
+            window.livewire.on('select2', () => {
                 initSelectDrop();
             });
         });
