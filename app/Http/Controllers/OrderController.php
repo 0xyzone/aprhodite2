@@ -23,13 +23,13 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $endpoint = 'https://portal.nepalcanmove.com/api/v1/branches';
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', $endpoint);
-        $content = json_decode($response->getBody(), true);
-        $branches = $content;
+        // $endpoint = 'http://portal.nepalcanmove.com/api/v1/branches';
+        // $client = new \GuzzleHttp\Client();
+        // $response = $client->request('GET', $endpoint);
+        // $content = json_decode($response->getBody(), true);
+        // $branches = $content;
         
-        return view('orders.create', compact('branches'));
+        return view('orders.create');
     }
 
     /**

@@ -1,3 +1,3 @@
 <x-app-layout>
-    <livewire:create-orders :branches=$branches />
+    <livewire:create-orders />
 </x-app-layout>

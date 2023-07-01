@@ -64,14 +64,14 @@
                     </x-button>
                 </div>
 
-                @if (Route::has('register'))
+                {{-- @if (Route::has('register'))
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         {{ __('Don’t have an account?') }}
                         <a href="{{ route('register') }}" class="text-blue-500 hover:underline">
                             {{ __('Register') }}
                         </a>
                     </p>
-                @endif
+                @endif --}}
             </div>
         </form>
         <script>
@@ -80,19 +80,19 @@
             });
         </script>
     </x-auth-card>
-@push ('scripts') 
-    <script>
-        $(document).ready(function() {
-            $("#togglePassword").change(function() {
-                if ($("#togglePassword").prop('checked') == true) {
-                    console.log('Show Password');
-                    $("#password").attr('type', 'text');
-                } else {
-                    console.log('Hide Password');
-                    $("#password").attr('type', 'password');
-                };
-            });
-        })
-    </script>
-@endpush
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $("#togglePassword").change(function() {
+                    if ($("#togglePassword").prop('checked') == true) {
+                        console.log('Show Password');
+                        $("#password").attr('type', 'text');
+                    } else {
+                        console.log('Hide Password');
+                        $("#password").attr('type', 'password');
+                    };
+                });
+            })
+        </script>
+    @endpush
 </x-guest-layout>

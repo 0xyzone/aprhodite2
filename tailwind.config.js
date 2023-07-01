@@ -7,6 +7,7 @@ module.exports = {
         "./storage/framework/views/*.php",
         "./resources/**/*.blade.php",
         "./resources/js/**/*.js",
+        "app/Http/Livewire/**/*.php"
     ],
 
     presets: [

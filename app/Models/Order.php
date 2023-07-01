@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
@@ -42,7 +44,17 @@ class Order extends Model
     public function scopeSearch($query, $term) {
         $term = "%$term%";
         $query->where(function($query) use ($term){
-            $query->where('id','like', $term);
+            $query->where('id','like', $term)->orWhere('phone','like', $term)->orWhere('alt-phone','like', $term);
         });
+    }
+
+    /**
+     * Get all of the getItems for the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getItems(): HasMany
+    {
+        return $this->hasMany(OrderItems::class, 'order_id', 'id');
     }
 }

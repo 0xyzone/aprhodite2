@@ -19,6 +19,7 @@ class CreateOrders extends Component
     public $selected_item;
     public $branches;
     public $customer = "new";
+    public $customers = "";
     public $orderStatus;
     public $userId;
     public $products = "";
@@ -36,6 +37,9 @@ class CreateOrders extends Component
     public $gateway = null;
     public $payment_status = "pending";
     public $note;
+    public $searchCustomer;
+    public $cus = "";
+    public $customa = "";
 
 
     protected $listeners = [
@@ -58,6 +62,11 @@ class CreateOrders extends Component
         foreach ($this->products as $product) {
             $this->quantity[$product->id] = 1;
         }
+    }
+
+    public function applyCustomer($id) {
+        $this->cus = $id;
+        $this->searchCustomer = "";
     }
 
     public $form = [
@@ -118,7 +127,7 @@ class CreateOrders extends Component
         $formFields = $this->validate();
         $formFields['form']['user_id'] = $this->userId;
         $formFields['form']['fullName'] = $formFields['form']['name'];
-        $existingCustomer = Customer::where('email', $formFields['form']['email'])->get();
+        $existingCustomer = Customer::where('phone', $formFields['form']['phone'])->orWhere('email', $formFields['form']['email'])->get();
 
 
         if ($existingCustomer->count() < 1) {
@@ -156,6 +165,14 @@ class CreateOrders extends Component
                     'price' => $item['price'] * $item['qty']
                 ]);
             }
+            $altPhone = $this->form['alt-phone'];
+            if($altPhone != ""){
+            foreach($existingCustomer as $custo){
+            $customer = Customer::findOrFail($custo->id);
+            }
+                $customer->update($formFields['form']);
+            }
+            
         }
             Cart::destroy();
 
@@ -206,7 +223,19 @@ class CreateOrders extends Component
         if ($this->adv == "") {
             $this->adv = 0;
         }
+        if($this->cus != ""){
+            $this->customa = Customer::findOrFail($this->cus);
+            $this->form['name'] = $this->customa->name;
+            $this->form['address'] = $this->customa->address;
+            $this->form['email'] = $this->customa->email;
+            $this->form['phone'] = $this->customa->phone;
+            if($this->customa['alt-phone'] != $this->form['alt-phone']){
+                $this->form['alt-phone'] = $this->customa['alt-phone'];
+            }
+            // dd($this->customa);
+        }
         $this->products = Product::search($this->search_items)->get();
+        $this->customers = Customer::search($this->searchCustomer)->get();
         $this->cart = Cart::content();
         foreach ($this->cart as $item) {
             $this->quantity[$item->id] = $item->qty;

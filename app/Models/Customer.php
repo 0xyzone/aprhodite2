@@ -16,4 +16,11 @@ class Customer extends Model
         'phone',
         'alt-phone',
     ];
+
+    public function scopeSearch($query, $term) {
+        $term = "%$term%";
+        $query->where(function($query) use ($term){
+            $query->where('id','like', $term)->orWhere('phone','like', $term);
+        });
+    }
 }

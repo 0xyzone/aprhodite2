@@ -1,16 +1,53 @@
 <div>
-    <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1 mb-6">
+    <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1 mb-4 flex flex-wrap gap-4">
         @if ($customer == 'existing')
             <x-primary-button wire:click="newCustomer">New Customer</x-primary-button>
-            <x-secondary-button wire:click="clearCart"
-                onclick="return confirm('Are you sure you want to clear the items?')">Clear</x-secondary-button>
+            @if ($subtotal != 0)
+                <x-secondary-button wire:click="clearCart"
+                    onclick="return confirm('Are you sure you want to clear the items?')">Clear</x-secondary-button>
+            @endif
+            @if ($cus == '')
+                <div>
+                    <x-input-with-icon-wrapper>
+                        <x-slot name="icon">
+                            <x-fas-search aria-hidden="true" class="w-5 h-5" />
+                        </x-slot>
+                        <x-input withicon id="searchCustomer" class="block w-full" type="text"
+                            placeholder="{{ __('Search customer...') }}" wire:model="searchCustomer"
+                            autocomplete="off" />
+                    </x-input-with-icon-wrapper>
+                </div>
+            @endif
         @endif
         @if ($customer == 'new')
             <x-primary-button type="none" wire:click="existingCustomer">Existing Customer</x-primary-button>
-            <x-secondary-button wire:click="clearCart"
-                onclick="return confirm('Are you sure you want to clear the items?')">Clear</x-secondary-button>
+            @if ($subtotal != 0)
+                <x-secondary-button wire:click="clearCart"
+                    onclick="return confirm('Are you sure you want to clear the items?')">Clear</x-secondary-button>
+            @endif
         @endif
     </div>
+    @if ($searchCustomer)
+        <div class="mb-6">
+            <p class="pt-4 text-sm">Searching for <span class="text-lime-600">{{ $searchCustomer }}</span>
+            </p>
+            <div class="flex gap-2 flex-wrap">
+                @forelse ($customers as $var)
+                    <div
+                        class="mt-2 p-4 bg-lime-600 text-white rounded-lg w-full lg:w-4/12 flex justify-between items-center shrink-0">
+                        <p><span class="font-bold ">#{{ $var->id }}</span> {{ $var->name }}
+                            ({{ $var->phone }})
+                        </p>
+                        <button wire:click="applyCustomer({{ $var->id }})">
+                            <x-fas-plus-circle class="w-6" />
+                        </button>
+                    </div>
+                @empty
+                    <span class="text-gray-500">No customers found!</span>
+                @endforelse
+            </div>
+        </div>
+    @endif
 
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
         <div class="lg:flex gap-4 w-full">
@@ -46,7 +83,7 @@
                                     </div>
                                 @endif
                             @empty
-                                <span class="text-gray-500">No products found!</span>
+                                <span class="text-gray-500">No customers found!</span>
                             @endforelse
                         </div>
                     @endif
@@ -88,8 +125,8 @@
                                 <x-fas-envelope aria-hidden="true" class="w-5 h-5" />
                             </x-slot>
                             <x-input withicon id="email" class="block w-full" type="email" name="email"
-                                :value="old('email')" placeholder="{{ __('Type customer email here...') }}" autofocus="true"
-                                wire:model.lazy="form.email" />
+                                :value="old('email')" placeholder="{{ __('Type customer email here...') }}"
+                                autofocus="true" wire:model.lazy="form.email" />
                         </x-input-with-icon-wrapper>
                         <x-input-error class="mt-2" :messages="$errors->get('form.email')" />
                     </div>
@@ -154,10 +191,6 @@
                                         <td>
                                             <div class="inline-flex gap-2 items-center pl-2">
                                                 <span>{{ $var->price * $quantity[$var->id] }}</span>
-                                                <button wire:click="removeItem('{{ $var->rowId }}')"
-                                                    onclick="return confirm('Are you sure you want to delete this item?')">
-                                                    <x-fas-circle-xmark class="w-4 text-red-500" />
-                                                </button>
                                             </div>
                                         </td>
                                         <td class="text-center flex gap-1 items-center justify-center py-4">
@@ -170,6 +203,10 @@
                                             </button>
                                             <button wire:click="increament('{{ $var->rowId }}')">
                                                 <x-heroicon-m-plus-circle class="w-4" />
+                                            </button>
+                                            <button wire:click="removeItem('{{ $var->rowId }}')"
+                                                onclick="return confirm('Are you sure you want to delete this item?')">
+                                                <x-fas-circle-xmark class="w-4 text-red-500" />
                                             </button>
 
                                         </td>
@@ -220,7 +257,7 @@
                         <select name="gateway" id="gateway"
                             class="text-gray-600 bg-gray-100 dark:text-gray-800 rounded-lg" wire:model="gateway">
                             <option value="">Choose gateway</option>
-                            <option value="eSewa">Cash</option>
+                            <option value="cash">Cash</option>
                             <option value="eSewa">eSewa</option>
                             <option value="Khalti">Khalti</option>
                             <option value="IME Pay">IME Pay</option>
