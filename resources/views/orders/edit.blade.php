@@ -1,3 +1,4 @@
 <x-app-layout>
-    {{ $order->id }}
+    <livewire:edit-order :order=$order />
+
 </x-app-layout>

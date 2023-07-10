@@ -8,17 +8,11 @@
         </div>
         <div class="mt-4 flex flex-col gap-4 w-full" x-data="{ filter: false }">
             <div class="flex gap-2 w-full">
-                <x-input-with-icon-wrapper class="w-full">
-                    <x-slot name="icon">
-                        <x-fas-search aria-hidden="true" class="w-5 h-5" />
-                    </x-slot>
-                    <x-input withicon id="search" class="block w-full" type="text"
-                        placeholder="{{ __('Search orders...') }}" wire:model="search" autocomplete="off" />
-                </x-input-with-icon-wrapper>
                 <x-secondary-button x-on:click="filter = ! filter">
                     <x-fas-filter class="w-4" />
                 </x-secondary-button>
             </div>
+            {{-- Filters --}}
             <div class="flex gap-2 text-xs w-full flex-wrap" x-show="filter"
                 x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-90"
                 x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300"
@@ -57,6 +51,7 @@
                     </div>
                 @endrole
             </div>
+            {{-- end Filters --}}
         </div>
     </div>
     <div class="flex-col mt-4">
@@ -101,8 +96,7 @@
                                 <td class="pl-2 py-4 whitespace-no-wrap relative"
                                     @click="data = data == {{ $var->id }} ? null : {{ $var->id }}">
                                     <div
-                                        class="w-1 {{ $bgColor[$var->order_status] }} mr-1
-                                         h-full absolute left-0 top-0">
+                                        class="w-1 {{ $bgColor[$var->order_status] }} mr-1 h-full absolute left-0 top-0">
                                     </div>
                                     <div class="text-right">
                                         ADB#{{ $var->id }}
@@ -139,19 +133,21 @@
 
                                 <td class="px-6 py-4 leading-5 whitespace-no-wrap text-center">
                                     @can('update order')
-                                        <select name="status" id="status"
-                                            class="bg-gray-300 dark:bg-gray-800 rounded-lg border-0 outline-none focus:ring-0 text-xs lg:text-sm"
-                                            wire:model="order_status.{{ $var->id }}"
-                                            wire:change="changeStatus({{ $var->id }})">
-                                            <option value="pending">Pending</option>
-                                            <option value="confirmed">Confirmed</option>
-                                            <option value="ncm">NCM</option>
-                                            <option value="delivered">Delivered</option>
-                                            <option value="dispatched">Dispatched</option>
-                                            <option value="canceled"
-                                                @hasrole('admin') @else disabled @endrole>Canceled
+                                        <form wire:submit.prevent="changeStatus({{ $var->id ?? '' }})">
+                                            @csrf
+                                            <select name="status" id="status"
+                                                class="bg-gray-300 dark:bg-gray-800 rounded-lg border-0 outline-none focus:ring-0 text-xs lg:text-sm"
+                                                wire:model="order_status.{{ $var->id }}">
+                                                <option value="pending">Pending</option>
+                                                <option value="confirmed">Confirmed</option>
+                                                <option value="ncm">NCM</option>
+                                                <option value="delivered">Delivered</option>
+                                                <option value="dispatched">Dispatched</option>
+                                                <option value="canceled"
+                                                    @hasrole('admin') @else disabled @endrole>Canceled
                                             </option>
                                         </select>
+                                    </form>
                                         @if (isset($updated[$var->id]))
                                             <x-fas-check-circle class="w-4 inline" id="updated{{ $var->id }}"
                                                 x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 1000)"
@@ -194,14 +190,12 @@
                             </tr>
                             <tr class="table-rows">
                                 <td colspan="100%">
-                                    <div class="relative overflow-hidden transition-all max-h-0 duration-700 flex justify-between w-full px-4 h-auto"
+                                    <div class="relative overflow-hidden transition-all max-h-0 duration-700 flex justify-between w-full px-4 h-full"
                                         style="" x-ref="container{{ $var->id }}"
-                                        x-bind:style="data == {{ $var->id }} ? 'max-height: ' + $refs
-                                            .container{{ $var->id }}.scrollHeight +
-                                            'px; display: flex; margin-bottom: 1.1rem; margin-top: 1rem;' : ''">
+                                        x-bind:style="data == {{ $var->id }} ? 'max-height: calc(' + $refs.container{{ $var->id }}.scrollHeight + 'rem * 4); margin-bottom: 1.1rem; margin-top: 1rem; padding-bottom: 2rem;' : ''">
                                         <div class="flex text-xs lg:text-sm gap-2 -p-8 w-full flex-wrap">
                                             <div
-                                                class="grid grid-cols-2 gap-2 rounded-lg bg-gray-300/20 max-w-md w-full p-4 shrink-0 h-max">
+                                                class="grid grid-cols-2 gap-2 rounded-lg bg-gray-300/20 max-w-md w-full p-4 shrink-0 h-max shadow-2xl">
                                                 <h1
                                                     class="font-bold text-lime-600 dark:text-lime-500 transform duration-700 col-span-2">
                                                     Customer Details</h1>
@@ -243,9 +237,9 @@
                                                             <span>{{ $var['alt-phone'] }}</span>
                                                         </a>
                                                     @endif
-                                                </div>
+                                                    </div>
                 </div>
-                <div class="rounded-lg bg-gray-500/20 max-w-sm w-full p-4 shrink-0">
+                <div class="rounded-lg bg-gray-500/20 max-w-sm w-full p-4 shrink-0 shadow-2xl">
                     <h1 class="font-bold text-lime-600 dark:text-lime-500 transform duration-700">
                         Items</h1>
 
@@ -302,7 +296,7 @@
                         </tfoot>
                     </table>
                 </div>
-                <div class="rounded-lg bg-gray-700/20 max-w-sm w-full p-4 shrink-0">
+                <div class="rounded-lg bg-gray-700/20 max-w-sm w-full flex-shrink p-4 shadow-lg">
                     <div class="w-full h-full flex-1">
                         <h1 class="font-bold text-lime-600 dark:text-lime-500 transform duration-700">
                             Notes</h1>
